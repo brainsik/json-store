@@ -7,6 +7,6 @@ and can accept unicode keys.
 It is intended for small stores. Everything is in memory and sync() always
 writes everything to disk.
 
-For issues and development, see this github page:
+For issues and development, see it's github page:
 
-https://github.com/brainsik/brainsik
+https://github.com/brainsik/json-store
