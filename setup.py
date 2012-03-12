@@ -4,8 +4,8 @@ from distutils.core import setup
 setup(
     name='json-store',
     version='1.1',
-    packages=['json_store',],
-    scripts=['bin/shelve2json.py',],
+    packages=['json_store'],
+    scripts=['bin/shelve2json.py'],
     description="A shelve-like store using JSON serialization.",
     long_description="JSON store is a simple replacement for shelve. It writes"
                      " JSON serialized files and can accept unicode keys.",
@@ -18,5 +18,6 @@ setup(
                  'Intended Audience :: Developers',
                  'License :: OSI Approved :: MIT License',
                  'Operating System :: OS Independent',
-                 'Programming Language :: Python :: 2.6',]
+                 'Programming Language :: Python :: 2.6',
+                 'Programming Language :: Python :: 2.7']
 )
