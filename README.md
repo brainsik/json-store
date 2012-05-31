@@ -1,5 +1,4 @@
-JSON Store
-----------
+# JSON Store
 
 JSON store is a simple replacement for shelve. It writes JSON serialized files
 and can accept unicode keys.
