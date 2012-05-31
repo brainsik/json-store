@@ -71,7 +71,7 @@ def test_kwargs_via_open():
     store = get_new_store(json_kw=dict(indent=4))
     try:
         store.update(data)
-        store.sync()
+        assert store.sync(), "Data not written?"
 
         with open(store.path, 'r') as fp:
             received = fp.read()
@@ -98,5 +98,51 @@ def test_kwargs_via_sync():
         with open(store.path, 'r') as fp:
             received_indent2 = fp.read()
         assert_not_equal(indent4, received_indent2)
+    finally:
+        os.remove(store.path)
+
+
+def test_needs_sync():
+    store = get_new_store()
+    try:
+        assert_equal(store._needs_sync, False)
+        store['Nico'] = 'Vega'
+        assert_equal(store._needs_sync, True)
+        store.sync()
+        assert_equal(store._needs_sync, False)
+    finally:
+        os.remove(store.path)
+
+
+def test_unchanged_store_doesnt_write_new_file():
+    store = get_new_store()
+    try:
+        inode1 = os.stat(store.path).st_ino
+        assert not store.sync(), "File was written?"
+        inode2 = os.stat(store.path).st_ino
+        assert_equal(inode1, inode2)
+    finally:
+        os.remove(store.path)
+
+
+def test_changed_store_writes_new_file():
+    store = get_new_store()
+    try:
+        inode1 = os.stat(store.path).st_ino
+        store['Tea'] = 'Pu-erh'
+        assert store.sync(), "File not written?"
+        inode2 = os.stat(store.path).st_ino
+        assert_not_equal(inode1, inode2)
+    finally:
+        os.remove(store.path)
+
+
+def test_force_sync_writes_new_file():
+    store = get_new_store()
+    try:
+        inode1 = os.stat(store.path).st_ino
+        assert store.sync(force=True), "File not written?"
+        inode2 = os.stat(store.path).st_ino
+        assert_not_equal(inode1, inode2)
     finally:
         os.remove(store.path)
