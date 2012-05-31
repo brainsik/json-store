@@ -1,10 +1,11 @@
 # JSON Store
 
-JSON store is a simple replacement for shelve. It writes JSON serialized files
-and can accept unicode keys.
+JSON store is a simple replacement for shelve. It writes JSON serialized files,
+accepts unicode keys, and tracks whether the store has been changed since last
+sync.
 
-It is intended for small stores. Everything is in memory and sync() always
-writes everything to disk.
+Note, JSON store is intended for small stores. Everything is in memory and
+sync() writes the whole store to disk.
 
 For issues and development, see it's github page:
 
