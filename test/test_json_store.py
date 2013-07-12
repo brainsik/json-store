@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 import os
 import shutil
+import stat
 from tempfile import NamedTemporaryFile
 
 try:
@@ -16,14 +17,19 @@ from nose.tools import assert_equal, assert_not_equal
 import json_store
 
 
-def get_new_store(json_kw=None):
+def get_new_store(json_kw=None, mode=None):
     # get a random filename to use
     with NamedTemporaryFile(prefix=__name__ + ".") as f:
         path = f.name
     assert not os.path.exists(path), (
         "Tempfile was not deleted: %s" % path)
 
-    store = json_store.open(path, json_kw)
+    kwargs = {}
+
+    if mode is not None:
+        kwargs['mode'] = mode
+
+    store = json_store.open(path, json_kw, **kwargs)
     assert os.path.exists(path), "New store file was not created"
     return store
 
@@ -144,5 +150,18 @@ def test_force_sync_writes_new_file():
         assert store.sync(force=True), "File not written?"
         inode2 = os.stat(store.path).st_ino
         assert_not_equal(inode1, inode2)
+    finally:
+        os.remove(store.path)
+
+
+def test_set_mode():
+    store = get_new_store(mode=0o640)
+    try:
+        st_mode = os.stat(store.path).st_mode
+        assert st_mode & stat.S_IRUSR
+        assert st_mode & stat.S_IWUSR
+        assert st_mode & stat.S_IRGRP
+        assert not st_mode & stat.S_IWGRP
+        assert not st_mode & stat.S_IROTH
     finally:
         os.remove(store.path)
