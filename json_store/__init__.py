@@ -83,7 +83,7 @@ class JSONStore(UserDict.DictMixin):
 
         with self._mktemp() as fp:
             json.dump(self._data, fp, **json_kw)
-        if self.mode != 0600:
+        if self.mode != 0600:  # _mktemp uses 0600 by default
             os.chmod(fp.name, self.mode)
         shutil.move(fp.name, self.path)
 
