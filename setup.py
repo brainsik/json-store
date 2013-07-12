@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='json-store',
-    version='2.0',
+    version='2.1',
     packages=['json_store'],
     scripts=['bin/shelve2json.py'],
     description="A shelve-like store using JSON serialization.",
@@ -14,7 +14,7 @@ setup(
     author_email='brainsik-code@theory.org',
     license='MIT License',
     url='https://github.com/brainsik/json-store',
-    download_url='http://pypi.python.org/packages/source/j/json-store/json-store-2.0.tar.gz',
+    download_url='http://pypi.python.org/packages/source/j/json-store/json-store-2.1.tar.gz',
     classifiers=['Development Status :: 5 - Production/Stable',
                  'Intended Audience :: Developers',
                  'License :: OSI Approved :: MIT License',
