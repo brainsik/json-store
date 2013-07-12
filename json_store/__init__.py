@@ -23,7 +23,7 @@ except ImportError:
 
 class JSONStore(UserDict.DictMixin):
 
-    def __init__(self, path, json_kw=None, mode=0o600):
+    def __init__(self, path, json_kw=None, mode=0600):
         """Create a JSONStore object backed by the file at `path`.
 
         If a dict is passed in as `json_kw`, it will be used as keyword
@@ -83,7 +83,8 @@ class JSONStore(UserDict.DictMixin):
 
         with self._mktemp() as fp:
             json.dump(self._data, fp, **json_kw)
-        os.chmod(fp.name, self.mode)
+        if self.mode != 0600:
+            os.chmod(fp.name, self.mode)
         shutil.move(fp.name, self.path)
 
         self._synced_json_kw = json_kw
@@ -91,5 +92,4 @@ class JSONStore(UserDict.DictMixin):
         return True
 
 
-def open(path, json_kw=None, mode=0o600):
-    return JSONStore(path, json_kw, mode=mode)
+open = JSONStore
