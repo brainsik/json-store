@@ -33,7 +33,7 @@ class JSONStore(MutableMapping):
 
     __DEFAULT_MODE = 384  # 0600 octal, -rw-------
 
-    def __init__(self, path, json_kw=None, mode=JSONStore.__DEFAULT_MODE):
+    def __init__(self, path, json_kw=None, mode=None):
         """Create a JSONStore object backed by the file at `path`.
 
         If a dict is passed in as `json_kw`, it will be used as keyword
@@ -41,7 +41,7 @@ class JSONStore(MutableMapping):
         """
         self.path = path
         self.json_kw = json_kw or {}
-        self.mode = mode
+        self.mode = mode or JSONStore.__DEFAULT_MODE
 
         self._data = {}
 
@@ -71,8 +71,8 @@ class JSONStore(MutableMapping):
         return len(self._data)
 
     def __iter__(self):
-        for key, value in self._data.items():
-            yield key, value
+        for key in self._data.keys():
+            yield key
 
     def keys(self):
         return self._data.keys()
