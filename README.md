@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/brainsik/json-store.png?branch=master)](https://travis-ci.org/brainsik/json-store)
+[![Build Status](https://api.travis-ci.org/brainsik/json-store.svg?branch=master)](https://travis-ci.org/brainsik/json-store)
 
 # JSON Store
 
