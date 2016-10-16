@@ -1,5 +1,14 @@
+# cache
 *.pyc
+.cache
+__pycache__
+
+# dev/test
+.python-version
+.tox
+
+# build
 *.egg-info
 MANIFEST
-dist
 build
+dist
