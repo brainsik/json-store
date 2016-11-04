@@ -14,7 +14,6 @@ def convert(oldfile):
     if not os.path.isfile(oldfile):
         raise ValueError("No such file: {}".format(oldfile))
 
-
     data = shelve.open(oldfile)
 
     newfile = oldfile.rsplit(".db")[0] + ".json"

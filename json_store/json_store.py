@@ -19,10 +19,12 @@ try:
 except ImportError:
     import json
 
+MODE_600 = int('600', 8)
+
 
 class JSONStore(collections.MutableMapping):
 
-    def __init__(self, path, json_kw=None, mode=0o600):
+    def __init__(self, path, json_kw=None, mode=MODE_600):
         """Create a JSONStore object backed by the file at `path`.
 
         If a dict is passed in as `json_kw`, it will be used as keyword
@@ -88,7 +90,7 @@ class JSONStore(collections.MutableMapping):
 
         with self._mktemp() as fp:
             json.dump(self._data, fp, **json_kw)
-        if self.mode != 0o600:  # _mktemp uses 0600 by default
+        if self.mode != MODE_600:  # _mktemp uses 0600 by default
             os.chmod(fp.name, self.mode)
         shutil.move(fp.name, self.path)
 

@@ -155,7 +155,7 @@ def test_force_sync_writes_new_file():
 
 
 def test_set_mode():
-    store = get_new_store(mode=0o640)
+    store = get_new_store(mode=int('640', 8))
     try:
         st_mode = os.stat(store.path).st_mode
         assert st_mode & stat.S_IRUSR
