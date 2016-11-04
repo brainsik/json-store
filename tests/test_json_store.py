@@ -1,6 +1,5 @@
 # encoding: utf-8
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 import os
 import shutil
@@ -52,11 +51,11 @@ def test_store_stocking():
         assert_equal(store, {})
         store_copyfile = store.path + ".copy"
 
-        store[u'\N{UMBRELLA}'] = 'umbrella'
+        store['\N{UMBRELLA}'] = 'umbrella'
         store.sync()
         assert_equal(len(store), 1)
 
-        store['nested'] = [{'dict': {'a': None}}, u'\N{CLOUD}']
+        store['nested'] = [{'dict': {'a': None}}, '\N{CLOUD}']
         store.sync()
         assert_equal(len(store), 2)
 
