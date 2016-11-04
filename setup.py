@@ -5,7 +5,11 @@ setup(
     name='json-store',
     version='2.1',
     packages=['json_store'],
-    scripts=['bin/shelve2json.py'],
+    entry_points={
+        'console_scripts': [
+            'shelve2json=json_store.shelve2json:main',
+        ],
+    },
     description="A shelve-like store using JSON serialization.",
     long_description="JSON store is a simple replacement for shelve. It writes"
                      " JSON serialized files, accepts unicode keys, and tracks"
@@ -19,6 +23,7 @@ setup(
                  'Intended Audience :: Developers',
                  'License :: OSI Approved :: MIT License',
                  'Operating System :: OS Independent',
-                 'Programming Language :: Python :: 2.6',
-                 'Programming Language :: Python :: 2.7']
+                 'Programming Language :: Python :: 2.7',
+                 'Programming Language :: Python :: 3',
+                 ]
 )

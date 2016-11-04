@@ -11,7 +11,7 @@ import shelve
 import json_store
 
 
-def main(oldfile):
+def convert(oldfile):
     if not os.path.isfile(oldfile):
         print "No such file:", oldfile
         raise SystemExit(1)
@@ -24,8 +24,13 @@ def main(oldfile):
     store.sync()
 
 
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
+def main(argv):
+    if len(argv) < 2:
         print "Usage: {0[0]} <shelve.db>".format(sys.argv)
-        raise SystemExit(1)
-    main(sys.argv[1])
+        return 1
+
+    convert(argv[1])
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
