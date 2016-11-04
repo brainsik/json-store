@@ -1,9 +1,11 @@
 # encoding: utf-8
 from distutils.core import setup
 
+import json_store
+
 setup(
     name='json-store',
-    version='2.1',
+    version=json_store.__version__,
     packages=['json_store'],
     entry_points={
         'console_scripts': [
@@ -18,12 +20,14 @@ setup(
     author_email='brainsik-code@theory.org',
     license='MIT License',
     url='https://github.com/brainsik/json-store',
-    download_url='http://pypi.python.org/packages/source/j/json-store/json-store-2.1.tar.gz',
-    classifiers=['Development Status :: 5 - Production/Stable',
-                 'Intended Audience :: Developers',
-                 'License :: OSI Approved :: MIT License',
-                 'Operating System :: OS Independent',
-                 'Programming Language :: Python :: 2.7',
-                 'Programming Language :: Python :: 3',
-                 ]
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: Implementation :: PyPy',
+    ],
 )

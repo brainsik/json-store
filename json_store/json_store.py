@@ -7,8 +7,6 @@ everything out to disk.
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-__version__ = "2.1"
-
 import os
 import shutil
 from tempfile import NamedTemporaryFile
@@ -18,6 +16,8 @@ try:
     import simplejson as json
 except ImportError:
     import json
+
+__all__ = ['JSONStore']
 
 MODE_600 = int('600', 8)
 
