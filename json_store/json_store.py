@@ -68,7 +68,7 @@ class JSONStore(collections.MutableMapping):
     def _mktemp(self):
         prefix = os.path.basename(self.path) + "."
         dirname = os.path.dirname(self.path)
-        return NamedTemporaryFile(prefix=prefix, dir=dirname, delete=False)
+        return NamedTemporaryFile(mode='w', prefix=prefix, dir=dirname, delete=False)
 
     def sync(self, json_kw=None, force=False):
         """Atomically write the entire store to disk if it's changed.
