@@ -24,7 +24,7 @@ def convert(oldfile):
 
 def main(argv):
     if len(argv) < 2:
-        print "Usage: {0[0]} <shelve.db>".format(sys.argv)
+        print("Usage: {0[0]} <shelve.db>".format(sys.argv))
         return 1
 
     try:
