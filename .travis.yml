@@ -6,14 +6,16 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-  - "3.7"
+  - "3.7-dev"
   - "pypy"
   - "pypy3"
   # bleeding edge versions
+  - "3.8-dev"
   - "nightly"
 install: true
 matrix:
   fast_finish: true
   allow_failures:
   - python: "nightly"
+  - python: "3.8-dev"
 script:  nosetests
