@@ -11,8 +11,6 @@ try:
 except ImportError:
     import json
 
-from nose.tools import assert_equal, assert_not_equal
-
 import json_store
 
 
@@ -36,11 +34,11 @@ def get_new_store(json_kw=None, mode=None):
 def test_empty_store():
     store = get_new_store()
     try:
-        assert_equal(store, {})
+        assert store == {}
 
         store2 = json_store.open(store.path)
         assert store2 is not store
-        assert_equal(store2, store)
+        assert store2 == store
     finally:
         os.remove(store.path)
 
@@ -48,20 +46,20 @@ def test_empty_store():
 def test_store_stocking():
     store = get_new_store()
     try:
-        assert_equal(store, {})
+        assert store == {}
         store_copyfile = store.path + ".copy"
 
         store['\N{UMBRELLA}'] = 'umbrella'
         store.sync()
-        assert_equal(len(store), 1)
+        assert len(store) == 1
 
         store['nested'] = [{'dict': {'a': None}}, '\N{CLOUD}']
         store.sync()
-        assert_equal(len(store), 2)
+        assert len(store) == 2
 
         shutil.copyfile(store.path, store_copyfile)
         store2 = json_store.open(store_copyfile)
-        assert_equal(store2, store)
+        assert store2 == store
     finally:
         os.remove(store.path)
         if os.path.exists(store_copyfile):
@@ -80,8 +78,8 @@ def test_kwargs_via_open():
 
         with open(store.path, 'r') as fp:
             received = fp.read()
-        assert_equal(indented, received)
-        assert_not_equal(not_indented, received)
+        assert indented == received
+        assert not_indented != received
     finally:
         os.remove(store.path)
 
@@ -97,12 +95,12 @@ def test_kwargs_via_sync():
         store.sync(json_kw=dict(indent=4))
         with open(store.path, 'r') as fp:
             received_indent4 = fp.read()
-        assert_equal(indent4, received_indent4)
+        assert indent4 == received_indent4
 
         store.sync()
         with open(store.path, 'r') as fp:
             received_indent2 = fp.read()
-        assert_not_equal(indent4, received_indent2)
+        assert indent4 != received_indent2
     finally:
         os.remove(store.path)
 
@@ -110,11 +108,11 @@ def test_kwargs_via_sync():
 def test_needs_sync():
     store = get_new_store()
     try:
-        assert_equal(store._needs_sync, False)
+        assert store._needs_sync is False
         store['Nico'] = 'Vega'
-        assert_equal(store._needs_sync, True)
+        assert store._needs_sync is True
         store.sync()
-        assert_equal(store._needs_sync, False)
+        assert store._needs_sync is False
     finally:
         os.remove(store.path)
 
@@ -125,7 +123,7 @@ def test_unchanged_store_doesnt_write_new_file():
         inode1 = os.stat(store.path).st_ino
         assert not store.sync(), "File was written?"
         inode2 = os.stat(store.path).st_ino
-        assert_equal(inode1, inode2)
+        assert inode1 == inode2
     finally:
         os.remove(store.path)
 
@@ -137,7 +135,7 @@ def test_changed_store_writes_new_file():
         store['Tea'] = 'Pu-erh'
         assert store.sync(), "File not written?"
         inode2 = os.stat(store.path).st_ino
-        assert_not_equal(inode1, inode2)
+        assert inode1 != inode2
     finally:
         os.remove(store.path)
 
@@ -148,7 +146,7 @@ def test_force_sync_writes_new_file():
         inode1 = os.stat(store.path).st_ino
         assert store.sync(force=True), "File not written?"
         inode2 = os.stat(store.path).st_ino
-        assert_not_equal(inode1, inode2)
+        assert inode1 != inode2
     finally:
         os.remove(store.path)
 
