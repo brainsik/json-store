@@ -16,4 +16,7 @@ matrix:
   fast_finish: true
   allow_failures:
   - python: "nightly"
-script:  nosetests
+install:
+  - pip install .
+script:
+  - pytest
