@@ -1,9 +1,9 @@
 # encoding: utf-8
-from distutils.core import setup
+import setuptools
 
 import json_store
 
-setup(
+setuptools.setup(
     name='json-store',
     version=json_store.__version__,
     packages=['json_store'],
