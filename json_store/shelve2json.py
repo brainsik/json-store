@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # encoding: utf-8
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, print_function, unicode_literals
 """Naïvely create a json_store file from a shelve DB."""
 
 import os
@@ -11,10 +10,9 @@ import shelve
 import json_store
 
 
-def main(oldfile):
+def convert(oldfile):
     if not os.path.isfile(oldfile):
-        print "No such file:", oldfile
-        raise SystemExit(1)
+        raise ValueError("No such file: {}".format(oldfile))
 
     data = shelve.open(oldfile)
 
@@ -24,8 +22,17 @@ def main(oldfile):
     store.sync()
 
 
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
+def main(argv):
+    if len(argv) < 2:
         print "Usage: {0[0]} <shelve.db>".format(sys.argv)
-        raise SystemExit(1)
-    main(sys.argv[1])
+        return 1
+
+    try:
+        convert(argv[1])
+    except Exception as e:
+        print(str(e), file=sys.stderr)
+        return 1
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
