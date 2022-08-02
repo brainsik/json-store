@@ -4,6 +4,7 @@
 __pycache__
 
 # dev/test
+.venv*
 .python-version
 .tox
 
@@ -12,3 +13,6 @@ __pycache__
 MANIFEST
 build
 dist
+
+# ide
+.idea
