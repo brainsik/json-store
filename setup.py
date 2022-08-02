@@ -9,7 +9,7 @@ setuptools.setup(
     packages=['json_store'],
     entry_points={
         'console_scripts': [
-            'shelve2json=json_store.shelve2json:main',
+            'shelve2json=json_store.shelve2json:run',
         ],
     },
     description="A shelve-like store using JSON serialization.",

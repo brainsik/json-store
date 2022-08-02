@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 # encoding: utf-8
 from __future__ import absolute_import, print_function, unicode_literals
 """Naïvely create a json_store file from a shelve DB."""
@@ -34,5 +33,9 @@ def main(argv):
         return 1
 
 
-if __name__ == '__main__':
+def run():
     sys.exit(main(sys.argv))
+
+
+if __name__ == '__main__':
+    run()
