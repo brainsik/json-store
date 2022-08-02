@@ -17,12 +17,17 @@ try:
 except ImportError:
     import json
 
+try:
+    from collections.abc import MutableMapping
+except ImportError:
+    from collections import MutableMapping
+
 __all__ = ['JSONStore']
 
 MODE_600 = int('600', 8)
 
 
-class JSONStore(collections.MutableMapping):
+class JSONStore(MutableMapping):
 
     def __init__(self, path, json_kw=None, mode=MODE_600):
         """Create a JSONStore object backed by the file at `path`.
