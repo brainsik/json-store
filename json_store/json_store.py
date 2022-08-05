@@ -10,7 +10,6 @@ from __future__ import unicode_literals
 import os
 import shutil
 from tempfile import NamedTemporaryFile
-import collections
 
 try:
     import simplejson as json
