@@ -66,11 +66,11 @@ def test_store_stocking():
 
 
 def test_kwargs_via_open():
-    data = dict(monkey="gone to heaven")
+    data = {"monkey": "gone to heaven"}
     indented = json.dumps(data, indent=4)
     not_indented = json.dumps(data)
 
-    store = get_new_store(json_kw=dict(indent=4))
+    store = get_new_store(json_kw={"indent": 4})
     try:
         store.update(data)
         assert store.sync(), "Data not written?"
@@ -84,14 +84,14 @@ def test_kwargs_via_open():
 
 
 def test_kwargs_via_sync():
-    data = dict(monkey="gone to heaven")
+    data = {"monkey": "gone to heaven"}
     indent4 = json.dumps(data, indent=4)
 
-    store = get_new_store(json_kw=dict(indent=2))
+    store = get_new_store(json_kw={"indent": 2})
     try:
         store.update(data)
 
-        store.sync(json_kw=dict(indent=4))
+        store.sync(json_kw={"indent": 4})
         with open(store.path, "r") as fp:
             received_indent4 = fp.read()
         assert indent4 == received_indent4
