@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # encoding: utf-8
 from __future__ import absolute_import, print_function, unicode_literals
+
 """Naïvely create a json_store file from a shelve DB."""
 
 import os
@@ -22,7 +23,7 @@ def convert(oldfile):
     store.sync()
 
 
-def main(argv):
+def main(argv=sys.argv):
     if len(argv) < 2:
         print("Usage: {0[0]} <shelve.db>".format(sys.argv))
         return 1
@@ -34,5 +35,5 @@ def main(argv):
         return 1
 
 
-if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+if __name__ == "__main__":
+    sys.exit(main())
