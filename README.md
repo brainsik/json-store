@@ -1,5 +1,4 @@
-[![Build Status](https://api.travis-ci.org/brainsik/json-store.svg?branch=master)](https://travis-ci.org/brainsik/json-store)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/json-store.svg)](https://travis-ci.org/brainsik/json-store)
+[![json-store](https://github.com/brainsik/json-store/actions/workflows/main.yml/badge.svg)](https://github.com/brainsik/json-store/actions/workflows/main.yml)
 
 # JSON Store
 
