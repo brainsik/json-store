@@ -85,3 +85,6 @@ jobs:
 
       - name: Test with pytest
         run: pytest
+
+      - name: Test shelve2json
+        run: sh tests/test_shelve2json.sh
