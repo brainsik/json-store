@@ -16,6 +16,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
+      - name: pre-commit cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pre-commit
+          key: ${{ runner.os }}-pre-commit-2022.08.04-1
+          restore-keys: |
+            ${{ runner.os }}-pre-commit-
+
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
