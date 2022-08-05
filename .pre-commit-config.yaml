@@ -6,3 +6,8 @@ repos:
       - id: check-merge-conflict
       - id: check-yaml
       - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 22.6.0
+    hooks:
+      - id: black

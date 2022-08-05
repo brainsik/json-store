@@ -18,13 +18,12 @@ def get_new_store(json_kw=None, mode=None):
     # get a random filename to use
     with NamedTemporaryFile(prefix=__name__ + ".") as f:
         path = f.name
-    assert not os.path.exists(path), (
-        "Tempfile was not deleted: %s" % path)
+    assert not os.path.exists(path), "Tempfile was not deleted: %s" % path
 
     kwargs = {}
 
     if mode is not None:
-        kwargs['mode'] = mode
+        kwargs["mode"] = mode
 
     store = json_store.open(path, json_kw, **kwargs)
     assert os.path.exists(path), "New store file was not created"
@@ -49,11 +48,11 @@ def test_store_stocking():
         assert store == {}
         store_copyfile = store.path + ".copy"
 
-        store['\N{UMBRELLA}'] = 'umbrella'
+        store["\N{UMBRELLA}"] = "umbrella"
         store.sync()
         assert len(store) == 1
 
-        store['nested'] = [{'dict': {'a': None}}, '\N{CLOUD}']
+        store["nested"] = [{"dict": {"a": None}}, "\N{CLOUD}"]
         store.sync()
         assert len(store) == 2
 
@@ -76,7 +75,7 @@ def test_kwargs_via_open():
         store.update(data)
         assert store.sync(), "Data not written?"
 
-        with open(store.path, 'r') as fp:
+        with open(store.path, "r") as fp:
             received = fp.read()
         assert indented == received
         assert not_indented != received
@@ -93,12 +92,12 @@ def test_kwargs_via_sync():
         store.update(data)
 
         store.sync(json_kw=dict(indent=4))
-        with open(store.path, 'r') as fp:
+        with open(store.path, "r") as fp:
             received_indent4 = fp.read()
         assert indent4 == received_indent4
 
         store.sync()
-        with open(store.path, 'r') as fp:
+        with open(store.path, "r") as fp:
             received_indent2 = fp.read()
         assert indent4 != received_indent2
     finally:
@@ -109,7 +108,7 @@ def test_needs_sync():
     store = get_new_store()
     try:
         assert store._needs_sync is False
-        store['Nico'] = 'Vega'
+        store["Nico"] = "Vega"
         assert store._needs_sync is True
         store.sync()
         assert store._needs_sync is False
@@ -132,7 +131,7 @@ def test_changed_store_writes_new_file():
     store = get_new_store()
     try:
         inode1 = os.stat(store.path).st_ino
-        store['Tea'] = 'Pu-erh'
+        store["Tea"] = "Pu-erh"
         assert store.sync(), "File not written?"
         inode2 = os.stat(store.path).st_ino
         assert inode1 != inode2
@@ -152,7 +151,7 @@ def test_force_sync_writes_new_file():
 
 
 def test_set_mode():
-    store = get_new_store(mode=int('640', 8))
+    store = get_new_store(mode=int("640", 8))
     try:
         st_mode = os.stat(store.path).st_mode
         assert st_mode & stat.S_IRUSR

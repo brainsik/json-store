@@ -22,13 +22,12 @@ try:
 except ImportError:
     from collections import MutableMapping
 
-__all__ = ['JSONStore']
+__all__ = ["JSONStore"]
 
-MODE_600 = int('600', 8)
+MODE_600 = int("600", 8)
 
 
 class JSONStore(MutableMapping):
-
     def __init__(self, path, json_kw=None, mode=MODE_600):
         """Create a JSONStore object backed by the file at `path`.
 
@@ -49,7 +48,7 @@ class JSONStore(MutableMapping):
             return
 
         # load the whole store
-        with open(path, 'r') as fp:
+        with open(path, "r") as fp:
             self.update(json.load(fp))
 
     def __getitem__(self, key):
@@ -75,7 +74,7 @@ class JSONStore(MutableMapping):
     def _mktemp(self):
         prefix = os.path.basename(self.path) + "."
         dirname = os.path.dirname(self.path)
-        return NamedTemporaryFile(mode='w', prefix=prefix, dir=dirname, delete=False)
+        return NamedTemporaryFile(mode="w", prefix=prefix, dir=dirname, delete=False)
 
     def sync(self, json_kw=None, force=False):
         """Atomically write the entire store to disk if it's changed.
