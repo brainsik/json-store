@@ -8,7 +8,6 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 import os
-import shutil
 from tempfile import NamedTemporaryFile
 
 try:
@@ -95,7 +94,7 @@ class JSONStore(MutableMapping):
             json.dump(self._data, fp, **json_kw)
         if self.mode != MODE_600:  # _mktemp uses 0600 by default
             os.chmod(fp.name, self.mode)
-        shutil.move(fp.name, self.path)
+        os.rename(fp.name, self.path)
 
         self._synced_json_kw = json_kw
         self._needs_sync = False
