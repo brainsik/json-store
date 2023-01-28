@@ -1,6 +1,9 @@
 name: json-store
 on: [push, pull_request]
 
+env:
+  pip-cache-key: 2023.01.27
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ github.job }}-2022.08.04-2
+          key: ${{ runner.os }}-pip-${{ github.job }}-${{ env.pip-cache-key }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -61,7 +64,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ github.job }}-2022.08.04-2
+          key: ${{ runner.os }}-pip-${{ github.job }}-${{ env.pip-cache-key }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
