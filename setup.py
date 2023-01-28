@@ -17,6 +17,7 @@ setuptools.setup(
         "JSON store is a simple replacement for shelve. It writes"
         " JSON serialized files, accepts unicode keys, and tracks"
         " whether the store has been changed since last sync."
+        " It has no dependencies."
     ),
     author="jeremy avnet",
     author_email="brainsik-code@theory.org",
