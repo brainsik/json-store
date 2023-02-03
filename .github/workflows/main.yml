@@ -53,14 +53,11 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
-      - name: Upgrade pip and setuptools
-        run: python -m pip install --upgrade pip setuptools
-
       - name: Install ${{ github.job }} dependencies
-        run: pip --disable-pip-version-check install wheel build
+        run: pip --disable-pip-version-check install poetry
 
       - name: Build package
-        run: python -m build
+        run: poetry build
 
       - name: Store build artifacts
         uses: actions/upload-artifact@v3
