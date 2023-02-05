@@ -10,7 +10,7 @@ fi
 find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -r VERSION
 
 # set system date/time to the VERSION timestamp
-timedatectl set-time $(stat --format='%y' this | grep -oP '\d\d\d\d-\d\d-\d\d')
-timedatectl set-time $(stat --format='%y' this | grep -oP '\d\d:\d\d:\d\d')
+timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d\d\d-\d\d-\d\d')
+timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d:\d\d:\d\d')
 
 python3 -m build
