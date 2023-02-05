@@ -9,7 +9,7 @@ fi
 source BUILD.sh
 
 # set all files to the VERSION timestamp
-find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -r "$BUILD_TOUCH"
+find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -t "$BUILD_TOUCH"
 
 # set system date/time to the VERSION timestamp
 date -R
