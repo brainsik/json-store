@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu -o pipefail
+set -x -eu -o pipefail
 
 if [ -z "${CI:-}" ]; then
 	echo "This should only run under CI."
