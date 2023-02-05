@@ -11,7 +11,7 @@ find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -r VERSION
 
 # set system date/time to the VERSION timestamp
 sudo timedatectl set-ntp no
-timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d\d\d-\d\d-\d\d')
-timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d:\d\d:\d\d')
+sudo timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d\d\d-\d\d-\d\d')
+sudo timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d:\d\d:\d\d')
 
 python3 -m build
