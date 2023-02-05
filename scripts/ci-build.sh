@@ -6,16 +6,16 @@ if [ -z "${CI:-}" ]; then
 	exit 1
 fi
 
-source BUILD.sh
+source VERSION.sh
 
 # set all files to the VERSION timestamp
-find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -t "$BUILD_TOUCH"
+find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -t "$VERSION_TOUCH"
 
 # set system date/time to the VERSION timestamp
 date -R
 sudo timedatectl set-ntp no
-sudo timedatectl set-time "$BUILD_DATE"
-sudo timedatectl set-time "$BUILD_TIME"
+sudo timedatectl set-time "$VERSION_DATE"
+sudo timedatectl set-time "$VERSION_TIME"
 date -R
 
 python3 -m build
