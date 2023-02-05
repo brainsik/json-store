@@ -10,8 +10,10 @@ fi
 find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -r VERSION
 
 # set system date/time to the VERSION timestamp
+date -R
 sudo timedatectl set-ntp no
 sudo timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d\d\d-\d\d-\d\d')
 sudo timedatectl set-time $(stat --format='%y' VERSION | grep -oP '\d\d:\d\d:\d\d')
+date -R
 
 python3 -m build
