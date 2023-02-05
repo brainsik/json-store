@@ -60,7 +60,7 @@ jobs:
         run: pip --disable-pip-version-check install wheel build
 
       - name: Build package
-        run: python -m build
+        run: scripts/ci-build.sh
 
       - name: Store build artifacts
         uses: actions/upload-artifact@v3
