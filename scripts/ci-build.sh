@@ -7,7 +7,7 @@ if [ -z "${CI:-}" ]; then
 fi
 
 # set all files to the VERSION timestamp
-find -E . -type f -regex '\./[^.].+' | xargs touch -r VERSION
+find . -type f -regextype egrep -regex '\./[^.].+' | xargs touch -r VERSION
 
 # set system date/time to the VERSION timestamp
 timedatectl set-time $(stat --format='%y' this | grep -oP '\d\d\d\d-\d\d-\d\d')
