@@ -111,4 +111,5 @@ jobs:
         run: pytest
 
       - name: Test shelve2json
+        if: ${{ matrix.os != 'windows-latest' }} # shelve.open has an internal traceback on Windows
         run: sh tests/test_shelve2json.sh
