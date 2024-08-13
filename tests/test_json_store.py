@@ -1,16 +1,10 @@
 # encoding: utf-8
-from __future__ import absolute_import, unicode_literals
-
+import json
 import os
 import platform
 import shutil
 import stat
 from tempfile import NamedTemporaryFile
-
-try:
-    import simplejson as json
-except ImportError:
-    import json
 
 import json_store
 

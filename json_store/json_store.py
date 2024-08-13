@@ -4,21 +4,10 @@
 This is for small stores. Everything is in memory and sync() always writes
 everything out to disk.
 """
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
+import json
 import os
+from collections.abc import MutableMapping
 from tempfile import NamedTemporaryFile
-
-try:
-    import simplejson as json
-except ImportError:
-    import json
-
-try:
-    from collections.abc import MutableMapping
-except ImportError:
-    from collections import MutableMapping
 
 __all__ = ["JSONStore"]
 
