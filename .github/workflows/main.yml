@@ -70,10 +70,11 @@ jobs:
 
   test:
     needs: [lint, build]
-    runs-on: ubuntu-latest
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "pypy-3.10"]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
@@ -102,6 +103,7 @@ jobs:
           pip install --disable-pip-version-check pytest
 
       - name: Install json-store package
+        shell: bash # so this works on both Linux and Windows
         run: |
           pip install --disable-pip-version-check dist/json_store-*.whl
 
