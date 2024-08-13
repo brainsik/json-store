@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import platform
 import shutil
 import stat
 from tempfile import NamedTemporaryFile
@@ -154,10 +155,11 @@ def test_set_mode():
     store = get_new_store(mode=int("640", 8))
     try:
         st_mode = os.stat(store.path).st_mode
+        is_windows = platform.system() == "Windows"
         assert st_mode & stat.S_IRUSR
         assert st_mode & stat.S_IWUSR
-        assert st_mode & stat.S_IRGRP
-        assert not st_mode & stat.S_IWGRP
-        assert not st_mode & stat.S_IROTH
+        assert st_mode & stat.S_IRGRP or is_windows
+        assert not st_mode & stat.S_IWGRP or is_windows
+        assert not st_mode & stat.S_IROTH or is_windows
     finally:
         os.remove(store.path)
