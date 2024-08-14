@@ -20,7 +20,7 @@ setuptools.setup(
         " It has no dependencies."
     ),
     author="jeremy avnet",
-    author_email="brainsik-code@theory.org",
+    author_email="json-store@theory.org",
     license="MIT License",
     url="https://github.com/brainsik/json-store",
     classifiers=[
