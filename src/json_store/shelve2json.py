@@ -9,13 +9,17 @@ import shelve
 import json_store
 
 
-def convert(oldfile):
+def convert(oldfile: str):
     if not os.path.isfile(oldfile):
         raise ValueError("No such file: {}".format(oldfile))
 
-    data = shelve.open(oldfile)
+    name = oldfile
+    # remove extensions that are implicitly added by the underlying DBM module
+    name = name.rsplit(".dat")[0]  # Windows
+    name = name.rsplit(".db")[0]  # macOS
 
-    newfile = oldfile.rsplit(".db")[0] + ".json"
+    data = shelve.open(name)
+    newfile = name + ".json"
     store = json_store.open(newfile)
     store.update(data)
     store.sync()
