@@ -76,7 +76,7 @@ jobs:
 
       - name: Install ${{ github.job }} dependencies
         run: |
-          uv sync --dev
+          uv sync
 
       - name: Test with pytest
         run: uv run pytest

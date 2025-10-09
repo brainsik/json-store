@@ -45,7 +45,5 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/json_store/__init__.py"
 
-[tool.uv]
-dev-dependencies = [
-	"pytest >=8.3"
-]
+[dependency-groups]
+dev = ["pytest >=8.3"]
