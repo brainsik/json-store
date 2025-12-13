@@ -1,11 +1,10 @@
-# Releasing a new version
+# Development
 
-Notes from the last release process. Documentation is the first step on the road
-to automation. 😊
+## Releasing a new version
 
-## Steps
+Documentation is the first step on the road to automation. 😊
 
-Follow these in order.
+Follow these steps in order.
 
 ### Create new build on GitHub
 
