@@ -23,3 +23,8 @@ repos:
     rev: v0.0.194
     hooks:
       - id: rumdl
+
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.24.1
+    hooks:
+      - id: validate-pyproject
