@@ -4,6 +4,7 @@
 This is for small stores. Everything is in memory and sync() always writes
 everything out to disk.
 """
+
 import json
 import os
 from collections.abc import MutableMapping
