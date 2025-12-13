@@ -18,3 +18,8 @@ repos:
     hooks:
       - id: ruff-check
       - id: ruff-format
+
+  - repo: https://github.com/rvben/rumdl-pre-commit
+    rev: v0.0.194
+    hooks:
+      - id: rumdl
