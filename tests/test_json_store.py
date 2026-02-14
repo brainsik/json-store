@@ -80,6 +80,7 @@ def test_kwargs_via_open():
 
 def test_kwargs_via_sync():
     data = {"monkey": "gone to heaven"}
+    indent2 = json.dumps(data, indent=2)
     indent4 = json.dumps(data, indent=4)
 
     store = get_new_store(json_kw={"indent": 2})
@@ -94,7 +95,29 @@ def test_kwargs_via_sync():
         store.sync()
         with open(store.path, "r") as fp:
             received_indent2 = fp.read()
-        assert indent4 != received_indent2
+        assert indent2 == received_indent2
+    finally:
+        os.remove(store.path)
+
+
+def test_empty_kwargs_via_sync():
+    data = {"poem": "First They Came"}
+    empty = json.dumps(data)
+    indent4 = json.dumps(data, indent=4)
+
+    store = get_new_store(json_kw={"indent": 4})
+    try:
+        store.update(data)
+
+        store.sync(json_kw={})
+        with open(store.path, "r") as fp:
+            received_empty = fp.read()
+        assert empty == received_empty
+
+        store.sync()
+        with open(store.path, "r") as fp:
+            received_indent4 = fp.read()
+        assert indent4 == received_indent4
     finally:
         os.remove(store.path)
 

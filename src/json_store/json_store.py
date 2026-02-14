@@ -74,7 +74,7 @@ class JSONStore(MutableMapping):
         If force is set True, a new file will be written even if the store
         hasn't changed since last sync.
         """
-        json_kw = json_kw or self.json_kw
+        json_kw = json_kw if json_kw is not None else self.json_kw
         if self._synced_json_kw != json_kw:
             self._needs_sync = True
 
