@@ -28,7 +28,7 @@ class JSONStore(MutableMapping):
 
         self._data = {}
 
-        self._synced_json_kw = None
+        self._synced_json_kw = {}
         self._needs_sync = False
 
         if not os.path.exists(path):
@@ -38,6 +38,7 @@ class JSONStore(MutableMapping):
         # load the whole store
         with open(path, "r") as fp:
             self.update(json.load(fp))
+            self._needs_sync = False
 
     def __getitem__(self, key):
         return self._data[key]

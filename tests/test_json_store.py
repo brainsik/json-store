@@ -111,8 +111,24 @@ def test_needs_sync():
         os.remove(store.path)
 
 
-def test_unchanged_store_doesnt_write_new_file():
+def test_unchanged_empty_store_doesnt_write_new_file():
     store = get_new_store()
+    try:
+        inode1 = os.stat(store.path).st_ino
+        assert not store.sync(), "File was written?"
+        inode2 = os.stat(store.path).st_ino
+        assert inode1 == inode2
+    finally:
+        os.remove(store.path)
+
+
+def test_unchanged_store_doesnt_write_new_file():
+    new_store = get_new_store()
+    new_store["Snowboarder"] = "Chloe Kim"
+    new_store.sync()
+
+    store = json_store.open(new_store.path)
+    print("Test: ", store._needs_sync)
     try:
         inode1 = os.stat(store.path).st_ino
         assert not store.sync(), "File was written?"
