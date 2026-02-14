@@ -3,8 +3,8 @@
 """Naïvely create a json_store file from a shelve DB."""
 
 import os
-import sys
 import shelve
+import sys
 
 import json_store
 
