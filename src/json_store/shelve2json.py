@@ -15,8 +15,10 @@ def convert(oldfile: str):
 
     name = oldfile
     # remove extensions that are implicitly added by the underlying DBM module
-    name = name.rsplit(".dat")[0]  # Windows
-    name = name.rsplit(".db")[0]  # macOS
+    if name.endswith(".dat"):  # Windows
+        name = name.rsplit(".dat", 1)[0]
+    if name.endswith(".db"):  # macOS
+        name = name.rsplit(".db", 1)[0]
 
     data = shelve.open(name)
     newfile = name + ".json"
@@ -27,7 +29,7 @@ def convert(oldfile: str):
 
 def main(argv=sys.argv):
     if len(argv) < 2:
-        print("Usage: {0[0]} <shelve.db>".format(sys.argv))
+        print("Usage: {0[0]} <shelve_db>".format(sys.argv))
         return 1
 
     try:
