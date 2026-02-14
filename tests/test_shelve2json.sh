@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -e -x
-
 tmp=$(mktemp tmpXXXXX)
+
+cleanup() {
+  rm -f "$tmp" "$tmp".{dat,db,json}
+}
+trap cleanup EXIT
+
 uname -s
 rm -f "$tmp"
 python3 -c 'import shelve; db=shelve.open("'"$tmp"'", flag="n"); db["eggs"] = "eggs"; db.sync(); db.close()'
@@ -16,5 +21,3 @@ else
 	# Linux
 	shelve2json "$tmp"
 fi
-
-rm -f "$tmp" "$tmp".{dat,db,json}
