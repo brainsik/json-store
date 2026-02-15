@@ -81,13 +81,17 @@ class JSONStore(MutableMapping):
         if not (self._needs_sync or force):
             return False
 
-        with self._mktemp() as tmp:
-            json.dump(self._data, tmp, **json_kw)
+        tmp = self._mktemp()
         try:
+            json.dump(self._data, tmp, **json_kw)
+            tmp.close()
+
             if self.mode != MODE_600:  # _mktemp uses 0600 by default
                 os.chmod(tmp.name, self.mode)
+
             os.replace(tmp.name, self.path)
         except BaseException:
+            tmp.close()
             os.remove(tmp.name)
             raise
 
