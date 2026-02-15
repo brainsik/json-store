@@ -29,7 +29,7 @@ def convert(oldfile: str):
 
 def main(argv=sys.argv):
     if len(argv) < 2:
-        print("Usage: {0[0]} <shelve_db>".format(sys.argv))
+        print("Usage: {0[0]} <shelve_db>".format(argv))
         return 1
 
     try:
