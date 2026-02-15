@@ -20,10 +20,10 @@ def convert(oldfile: str):
     if name.endswith(".db"):  # macOS
         name = name.rsplit(".db", 1)[0]
 
-    data = shelve.open(name)
     newfile = name + ".json"
     store = json_store.open(newfile)
-    store.update(data)
+    with shelve.open(name) as data:
+        store.update(data)
     store.sync()
 
 
