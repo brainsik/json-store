@@ -23,7 +23,7 @@ Follow these steps in order.
 
 ### Release on GitHub
 
-1. Download artifacts from [GitHub workflow](https://github.com/brainsik/json-store/actions/workflows/main.yml).
+1. Download artifacts from GitHub: `rm -rf dist && ./download-artifact.sh <tag>`
 This will create a `dist/` directory.
 1. Create release from tag and write notes
 1. Attach files in `/path/to/dist`
@@ -34,7 +34,7 @@ This will create a `dist/` directory.
 1. Upload artifacts
 
 	```sh
-	uvx twine upload /path/to/dist/*
+	uvx twine upload dist/*
 	```
 
 ### Cleanup

@@ -1,9 +1,11 @@
 # cache
 *.pyc
+.*_cache
 .cache
 __pycache__
 
 # dev/test
+.envrc
 .venv*
 .python-version
 .tox
