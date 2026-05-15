@@ -42,6 +42,14 @@ shelve2json = "json_store.shelve2json:main"
 requires = ["hatchling==1.29.0"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.sdist]
+include = [
+    "/pyproject.toml",
+    "/LICENSE.txt",
+    "/src",
+    "/tests",
+]
+
 [tool.hatch.version]
 path = "src/json_store/__init__.py"
 
