@@ -39,7 +39,7 @@ Changelog = "https://github.com/brainsik/json-store/releases"
 shelve2json = "json_store.shelve2json:main"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.29.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
