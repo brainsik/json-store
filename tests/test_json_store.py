@@ -151,7 +151,6 @@ def test_unchanged_store_doesnt_write_new_file():
     new_store.sync()
 
     store = json_store.open(new_store.path)
-    print("Test: ", store._needs_sync)
     try:
         inode1 = os.stat(store.path).st_ino
         assert not store.sync(), "File was written?"
