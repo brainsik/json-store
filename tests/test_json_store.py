@@ -1,4 +1,3 @@
-# encoding: utf-8
 import json
 import os
 import platform
@@ -13,7 +12,7 @@ def get_new_store(json_kw=None, mode=None):
     # get a random filename to use
     with NamedTemporaryFile(prefix=__name__ + ".") as f:
         path = f.name
-    assert not os.path.exists(path), "Tempfile was not deleted: %s" % path
+    assert not os.path.exists(path), f"Tempfile was not deleted: {path}"
 
     kwargs = {}
 

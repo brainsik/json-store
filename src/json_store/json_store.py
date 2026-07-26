@@ -1,4 +1,3 @@
-# encoding: utf-8
 """A JSON store to use in place of shelve. Unicode keys, FTW!
 
 This is for small stores. Everything is in memory and sync() always writes

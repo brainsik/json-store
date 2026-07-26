@@ -1,7 +1,7 @@
 #! /usr/bin/env python
-# encoding: utf-8
 """Naïvely create a json_store file from a shelve DB."""
 
+import dbm
 import os
 import shelve
 import sys
@@ -11,7 +11,7 @@ import json_store
 
 def convert(oldfile: str):
     if not os.path.isfile(oldfile):
-        raise ValueError("No such file: {}".format(oldfile))
+        raise ValueError(f"No such file: {oldfile}")
 
     name = oldfile
     # remove extensions that are implicitly added by the underlying DBM module
@@ -29,12 +29,12 @@ def convert(oldfile: str):
 
 def main(argv=sys.argv):
     if len(argv) < 2:
-        print("Usage: {0[0]} <shelve_db>".format(argv))
+        print(f"Usage: {argv[0]} <shelve_db>")
         return 1
 
     try:
         convert(argv[1])
-    except Exception as e:
+    except (*dbm.error, TypeError, ValueError) as e:
         print(str(e), file=sys.stderr)
         return 1
     return 0
