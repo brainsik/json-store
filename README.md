@@ -1,8 +1,8 @@
 # json-store
 
 [![json-store](https://github.com/brainsik/json-store/actions/workflows/main.yml/badge.svg)](https://github.com/brainsik/json-store/actions/workflows/main.yml)
-![PyPI](https://img.shields.io/pypi/v/json-store)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/json-store)
+![PyPI - json-store version](https://img.shields.io/pypi/v/json-store?v=4.6)
+![PyPI - supported Python versions](https://img.shields.io/pypi/pyversions/json-store?v=4.6)
 
 **json-store** is a simple replacement for shelve. It writes JSON serialized files,
 accepts unicode keys, and tracks whether the store has been changed since last
